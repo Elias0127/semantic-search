@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Message } from '../utils/types';
+import { Message, Product } from '../utils/types';
 
 interface ChatContextType {
   messages: Message[];
@@ -7,6 +7,8 @@ interface ChatContextType {
   isTyping: boolean;
   setIsTyping: (isTyping: boolean) => void;
   clearMessages: () => void;
+  lastResults: Product[];
+  setLastResults: (products: Product[]) => void;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -31,8 +33,9 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     return [];
   });
-  
+
   const [isTyping, setIsTyping] = useState(false);
+  const [lastResults, setLastResults] = useState<Product[]>([]);
 
   useEffect(() => {
     localStorage.setItem('chatMessages', JSON.stringify(messages));
@@ -48,6 +51,7 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const clearMessages = () => {
     setMessages([]);
+    setLastResults([]);
   };
 
   return (
@@ -58,6 +62,8 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isTyping,
         setIsTyping,
         clearMessages,
+        lastResults,
+        setLastResults,
       }}
     >
       {children}

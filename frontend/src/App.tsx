@@ -1,4 +1,3 @@
-import React from 'react';
 import ChatInterface from './components/ChatInterface';
 import { ChatProvider } from './context/ChatContext';
 
