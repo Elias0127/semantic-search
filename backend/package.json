@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_NO_WARNINGS=1 node --loader ts-node/esm src/index.ts",
     "seed": "node --loader ts-node/esm src/scripts/seed.ts",
-    "fixImageField": "node --loader ts-node/esm src/scripts/fixImageField.ts"
+    "fixImageField": "node --loader ts-node/esm src/scripts/fixImageField.ts",
+    "start": "node --loader ts-node/esm src/index.ts"
   },
   "keywords": [],
   "author": "",
