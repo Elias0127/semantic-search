@@ -26,9 +26,12 @@ const ChatInterface = () => {
   /* ——— send query ——— */
   const send = async (content: string) => {
     if (!content.trim()) return;
-
+  
+    console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+  
     addMessage({ sender: 'user', content, timestamp: new Date() });
     setIsTyping(true);
+  
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
