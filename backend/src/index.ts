@@ -29,11 +29,11 @@ await fastify.register(cors, {
 await fastify.register(searchRoute);
 await fastify.register(imageProxyRoute);
 
-
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 const start = async () => {
   try {
     await connectToDatabase();
-    await fastify.listen({ port: 3001 });
+    await fastify.listen({ port: PORT, host: "0.0.0.0" });
     console.log("Server listening on http://localhost:3001");
   } catch (err) {
     fastify.log.error(err);
