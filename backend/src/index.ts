@@ -23,18 +23,14 @@ const fastify = Fastify({
 });
 
 await fastify.register(cors, {
-  origin: (origin, cb) => {
-    const allowedOrigins = [
-      "http://localhost:5173",
-      "https://frontend-production-3eb6.up.railway.app",
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      cb(null, true);
-    } else {
-      cb(new Error("Not allowed by CORS"), false);
-    }
-  },
+  origin: [
+    "http://localhost:5173",
+    "https://frontend-production-3eb6.up.railway.app",
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
+  preflight: true, 
 });
+  
   
   
 
